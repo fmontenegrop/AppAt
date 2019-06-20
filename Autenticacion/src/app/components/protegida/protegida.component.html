@@ -1,0 +1,14 @@
+<div class="row" *ngIf="profile">
+  <div class="col-md-4">
+    <img [src]="profile.picture">
+  </div>
+  <div class="offset-1 col">
+    <ul class="list-group">
+      <li class="list-item">{{profile.name}}</li>      
+      <li class="list-item">{{profile.updated_at | date:'dd mm yy'}}</li>
+    </ul>
+  </div>
+</div>
+<pre>
+  {{profile| json}}
+</pre>>

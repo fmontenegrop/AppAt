@@ -1,0 +1,24 @@
+<div class="container">
+  <mdb-navbar SideClass="navbar navbar-expand-lg main_header">
+    <mdb-navbar-brand>
+        <a class="navbar-brand title">AuthApp</a>
+    </mdb-navbar-brand>
+    <links>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link waves-light leter" [routerLink]="'home'" mdbWavesEffect>Home </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link waves-light leter" [routerLink]="'precios'" mdbWavesEffect>Precios</a>
+            </li>
+            <li class="nav-item" *ngIf="aut.isAuthenticated()">
+                <a class="nav-link waves-light leter" [routerLink]="'protegida'" mdbWavesEffect>Protegida</a>
+            </li>
+        </ul>
+        <span class="navbar-text white-text">
+                <button class="btn-sm" type="button" mdbBtn color="dark" mdbWavesEffect (click)="login()" *ngIf="!aut.isAuthenticated()">Login</button>
+                <button class="btn-sm" type="button" mdbBtn color="danger" mdbWavesEffect (click)="out()" *ngIf="aut.isAuthenticated()">Out</button>
+        </span>
+    </links>
+  </mdb-navbar>
+</div>
