@@ -1,0 +1,96 @@
+<div class="row">
+  <span class="title-form">Formulario Template</span>
+  <hr>
+</div>
+<div class="text-center">
+  <div class="row pt-5">
+    <div class="col-md-2">
+      <div class="row pb-2">
+        <span class="dat">Nombre</span>
+      </div>
+      <div class="row pt-4 pb-1">
+        <span class="dat">Apellido</span>
+      </div>
+      <div class="row pt-4 pb-1">
+        <span class="dat">Correo</span>
+      </div>
+      <div class="row pt-4 pb-5">
+        <span class="dat">Pais</span>
+      </div>
+      <div class="row pt-5">
+        <span class="dat">Condisiones de uso</span>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <form (ngSubmit)="guardar(forma)" #forma="ngForm">
+        <div class="ml-3">
+          <div class="form-group row mdb-error">
+            <input #nombre="ngModel" mdbInput type="text" class="form-control" placeholder="Nombre"
+              [(ngModel)]="usuario.nombre" minlength="5" required name="Nombre">
+            <div *ngIf="(nombre.errors?.required) && nombre.touched">
+              <mdb-badge danger="true">Es te campo es requerido</mdb-badge>
+            </div>
+            <div *ngIf="nombre.errors?.minlength">
+              <mdb-badge danger="true">se necesita tener al menos {{nombre.errors.minlength.requiredLength}} caracteres
+              </mdb-badge>
+            </div>
+          </div>
+          <div class="form-group row">
+            <input #apellido="ngModel" mdbInput type="text" class="form-control" placeholder="Apellido"
+              [(ngModel)]="usuario.apellido" minlength="5" required name="Apellido">
+            <!-- -->
+            <div *ngIf="(apellido.errors?.required) && apellido.touched">
+              <mdb-badge danger="true">Es te campo es requerido</mdb-badge>
+            </div>
+            <div *ngIf="apellido.errors?.minlength">
+              <mdb-badge danger="true">Se necesita tener al menos {{apellido.errors.minlength.requiredLength}}
+                caracteres</mdb-badge>
+            </div>
+          </div>
+          <div class="form-group row">
+            <input #correo="ngModel" mdbInput type="text" class="form-control" placeholder="Correo electronico"
+              [(ngModel)]="usuario.correo" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="correo">
+            <div *ngIf="(correo.errors?.required) && correo.touched">
+              <mdb-badge danger="true">Es te campo es requerido</mdb-badge>
+            </div>
+            <div *ngIf="correo.errors?.pattern">
+              <mdb-badge danger="true">Correo invalido </mdb-badge>
+            </div>
+          </div>
+          <div class="form-group row">
+            <select #pais="ngModel" [(ngModel)]="usuario.pais" class="browser-default custom-select" name="pais">
+              <option selected value="">Seleccione un pais</option>
+              <option *ngFor="let pais of paises" [value]=pais.codigo>{{pais.nombre}}</option>
+            </select>
+            <div *ngIf="(!val(usuario.pais))">
+                <mdb-badge danger="true">                  
+                    Seleccione un pais </mdb-badge>
+              </div>
+          </div>
+          <div class="form-group row">
+            <!-- Default unchecked -->
+            <div class="custom-control custom-radio pr-2">
+              <input [(ngModel)]="usuario.sexo" type="radio" class="custom-control-input" id="hombre" name="sexo"
+                mdbInput value="hombre">
+              <label class="custom-control-label" for="hombre">Hombre</label>
+            </div>
+
+            <!-- Default checked -->
+            <div class="custom-control custom-radio">
+              <input [(ngModel)]="usuario.sexo" type="radio" class="custom-control-input" id="mujer" name="sexo" checked
+                mdbInput value="Mujer">
+              <label class="custom-control-label" for="mujer">Mujer</label>
+            </div>
+          </div>
+          <div class="form-group row pb-3">
+            <mdb-checkbox [default]="true" [(ngModel)]="usuario.aceptar" name="check" required>
+              Aceptar</mdb-checkbox>
+          </div>
+        </div>
+        <div class="col-md-1 pl-0">          
+          <button  type="submit" mdbBtn color="info" mdbWavesEffect [disabled]="!forma.valid">Guardar</button>
+        </div>        
+      </form>
+    </div>
+  </div>
+</div>

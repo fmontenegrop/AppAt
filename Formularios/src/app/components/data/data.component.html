@@ -1,0 +1,43 @@
+<div class="row">
+  <span class="title-form">Formulario Data</span>
+  <hr>
+</div>
+<form [formGroup]="forma" (ngSubmit)="guardar">
+  <div formGroupName="nombre_completo">
+    <div class="form-group row pt-3">
+      <label class="col-sm-2 col-form-label dat">Nombre</label>
+      <div class="col-md-6">
+        <div class="md-form mt-0 ">
+          <input mdbInput type="email" class="form-control" id="inputEmail3MD" placeholder="Nombre"
+            formControlName="nombre">
+        </div>
+        <mdb-badge danger="true" *ngIf="forma.get('nombre_completo.nombre').errors?.required">Nombre requerido</mdb-badge>
+        <mdb-badge danger="true" *ngIf="forma.get('nombre_completo.nombre').errors?.minlength">Caracteres insuficientes</mdb-badge>
+        
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label dat">Apellido</label>
+      <div class="col-md-6">
+        <div class="md-form mt-0">
+          <input mdbInput type="email" class="form-control" id="inputEmail3MD" placeholder="Apellido"
+            formControlName="apellido">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label dat">Correo</label>
+    <div class="col-md-6">
+      <div class="md-form mt-0">
+        <input mdbInput type="email" class="form-control" id="inputEmail3MD" placeholder="Correo"
+          formControlName="correo">
+      </div>
+    </div>
+  </div>
+  <div class="form-goup row">
+    <button type="submit" (click)="guardar()" mdbBtn color="info" mdbWavesEffect
+      [disabled]="!forma.valid">Guardar</button>
+  </div>
+</form>
